@@ -213,6 +213,13 @@ public class LocationGooglePlayServicesProvider implements ServiceLocationProvid
         listener = null;
         googlePlayServicesListener = null;
         serviceListener = null;
+
+        if (client.isConnected()) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(client, this);
+            client.disconnect();
+            client.unregisterConnectionCallbacks(this);
+            client = null;
+        }
     }
 
     @Override
