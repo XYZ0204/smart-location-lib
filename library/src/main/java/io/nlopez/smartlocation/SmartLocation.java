@@ -7,8 +7,10 @@ import android.support.annotation.Nullable;
 
 import com.google.android.gms.location.DetectedActivity;
 
+import java.security.Key;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.WeakHashMap;
 
 import io.nlopez.smartlocation.activity.ActivityProvider;
@@ -214,8 +216,17 @@ public class SmartLocation {
         }
 
         public void destroy() {
-            provider.destroy();
-            provider = null;
+
+            for (Object key : MAPPING.keySet()) {
+                System.out.println("Key : " + key.toString() + " Value : "
+                        + MAPPING.get(key));
+                MAPPING.remove(key);
+            }
+//            MAPPING.clear();
+            if (provider != null) {
+                provider.destroy();
+                provider = null;
+            }
             params = null;
             smartLocation = null;
         }
