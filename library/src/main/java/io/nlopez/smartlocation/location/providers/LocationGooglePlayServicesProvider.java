@@ -172,8 +172,6 @@ public class LocationGooglePlayServicesProvider implements ServiceLocationProvid
         if (client.isConnected()) {
             LocationServices.FusedLocationApi.removeLocationUpdates(client, this);
             client.disconnect();
-            client.unregisterConnectionCallbacks(this);
-            client = null;
         }
 
         fulfilledCheckLocationSettings = false;

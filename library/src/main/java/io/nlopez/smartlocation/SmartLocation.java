@@ -217,16 +217,18 @@ public class SmartLocation {
 
         public void destroy() {
 
+            if (provider != null) {
+                provider.destroy();
+                provider = null;
+            }
+
             for (Object key : MAPPING.keySet()) {
                 System.out.println("Key : " + key.toString() + " Value : "
                         + MAPPING.get(key));
                 MAPPING.remove(key);
             }
 //            MAPPING.clear();
-            if (provider != null) {
-                provider.destroy();
-                provider = null;
-            }
+
             params = null;
             smartLocation = null;
         }
